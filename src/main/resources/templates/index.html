@@ -14,15 +14,29 @@
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <title>Работа мечты!</title>
+    <title>Автомобильные инциденты</title>
 </head>
 <body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" th:href="@{/index}">
+            Автомобильные инциденты
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <span th:text="${user}"></span>
+            </div>
+        </div>
+    </nav>
+</div>
 <h1 align="center">"Автонарушители"</h1>
 <p class="text-center">В системе существуют две роли. Обычные пользователи и автоинспекторы.</p>
 <p class="text-center"><strong>Пользователь добавляет описание автонарушение.</strong></p>
 <p class="text-center">В заявлении указывает: адрес, номер машины, описание нарушения и фотографию нарушения.</p>
 <p class="text-center"><strong>У заявки есть статус. Принята. Отклонена. Завершена.</strong></p>
 <p class="text-center">Вид системы. Главная страница - это поиск с таблицей.</p>
-</body>
 </body>
 </html>
