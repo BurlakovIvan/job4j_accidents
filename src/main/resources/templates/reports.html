@@ -34,27 +34,24 @@
     </nav>
 </div>
 
-<p class="text-center">Заявки</strong></p>
+<p class="text-center">Заявления</strong></p>
 <div class="row">
     <table class="table">
         <thead>
         <tr>
             <th scope="col" class="text-center">#</th>
             <th scope="col" class="text-center">Название</th>
-            <th scope="col" class="text-center">Описание</th>
-            <th scope="col" class="text-center">Адрес</th>
+            <th scope="col" class="text-center">Заявитель</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="accident: ${accidents}">
-            <td th:text="${accident.id}" class="text-center"></td>
-            <td th:text="${accident.name}" class="text-center"/>
-            <td th:text="${accident.text}" class="text-center"/>
-            <td th:text="${accident.address}" class="text-center"/>
+        <tr th:each="report: ${reports}">
+            <td th:text="${report.id}" class="text-center"></td>
+            <td th:text="${report.name}" class="text-center"/>
+            <td th:text="${report.userId}" class="text-center"/>
         </tr>
         </tbody>
     </table>
 </div>
-
 </body>
 </html>
