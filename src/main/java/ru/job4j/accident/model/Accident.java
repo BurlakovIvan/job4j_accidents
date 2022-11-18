@@ -1,4 +1,4 @@
-package ru.job4j.accidents.model;
+package ru.job4j.accident.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,9 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Report {
+public class Accident {
     @EqualsAndHashCode.Include
     private int id;
     private String name;
-    private int userId;
+    private String text;
+    private String address;
 }
