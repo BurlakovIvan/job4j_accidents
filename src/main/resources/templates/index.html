@@ -41,6 +41,7 @@
             <th scope="col" class="text-center">#</th>
             <th scope="col" class="text-center">Ред.</th>
             <th scope="col" class="text-center">Название</th>
+            <th scope="col" class="text-center">Тип</th>
             <th scope="col" class="text-center">Описание</th>
             <th scope="col" class="text-center">Адрес</th>
         </tr>
@@ -53,6 +54,7 @@
                     <i class="fa fa-edit"></i>
                </a>
                <td th:text="${accident.name}" class="text-center"/>
+               <td th:text="${accident.type.name}" class="text-center"/>
                <td th:text="${accident.text}" class="text-center"/>
                <td th:text="${accident.address}" class="text-center"/>
             </td>

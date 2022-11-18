@@ -15,7 +15,8 @@ public class AccidentController {
     private final AccidentService accidentService;
 
     @GetMapping("/addAccident")
-    public String viewCreateAccident() {
+    public String viewCreateAccident(Model model) {
+        model.addAttribute("types", accidentService.findAllAccidentType());
         return "createAccident";
     }
 
@@ -31,6 +32,7 @@ public class AccidentController {
         String redirect = "index";
         if (accident.isPresent()) {
             model.addAttribute("accident", accident.get());
+            model.addAttribute("types", accidentService.findAllAccidentType());
             redirect = "formUpdateAccident";
         }
         return redirect;
