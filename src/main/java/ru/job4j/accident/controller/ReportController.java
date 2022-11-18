@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.Report;
 import ru.job4j.accident.service.ReportService;
@@ -37,13 +34,13 @@ public class ReportController {
         return "redirect:/reports";
     }
 
-    @GetMapping("/editReport/{reportId}")
-    public String editReport(Model model, @PathVariable("reportId") int id) {
+    @GetMapping("/formUpdateReport")
+    public String update(Model model, @RequestParam("id") int id) {
         Optional<Report> report = reportService.findById(id);
         String redirect = "redirect:/reports";
         if (report.isPresent()) {
             model.addAttribute("report", report.get());
-            redirect = "editReport";
+            redirect = "formUpdateReport";
         }
         return redirect;
     }

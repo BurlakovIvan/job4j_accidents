@@ -48,9 +48,9 @@
         <tr th:each="report: ${reports}">
             <td th:text="${report.id}" class="text-center"></td>
             <td>
-            <a th:href="@{|/editReport/${report.id}|}">
-                <i class="fa fa-edit"></i>
-            </a>
+                <a th:href="@{|/formUpdateReport?id=${report.id}|}">
+                    <i class="fa fa-edit"></i>
+                </a>
             <td th:text="${report.name}" class="text-center"/>
             <td th:text="${report.userId}" class="text-center"/>
             </td>
