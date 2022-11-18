@@ -8,26 +8,33 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 @ThreadSafe
 public class ReportMem {
     private final Map<Integer, Report> reports = new ConcurrentHashMap<>();
-    private int ids = 1;
+    private final AtomicInteger ids = new AtomicInteger(0);
 
-    {
-        reports.put(ids,
-                new Report(ids++, "Report1", 1));
-        reports.put(ids,
-                new Report(ids++, "Report2", 1));
-        reports.put(ids,
-                new Report(ids++, "Report3", 2));
-        reports.put(ids,
-                new Report(ids++, "Report4", 1));
-        reports.put(ids,
-                new Report(ids++, "Report5", 3));
-        reports.put(ids,
-                new Report(ids++, "Report6", 2));
+    public ReportMem() {
+        int id = ids.incrementAndGet();
+        reports.put(id,
+                new Report(id, "Report1", 1));
+        id = ids.incrementAndGet();
+        reports.put(id,
+                new Report(id, "Report2", 1));
+        id = ids.incrementAndGet();
+        reports.put(id,
+                new Report(id, "Report3", 2));
+        id = ids.incrementAndGet();
+        reports.put(id,
+                new Report(id, "Report4", 1));
+        id = ids.incrementAndGet();
+        reports.put(id,
+                new Report(id, "Report5", 3));
+        id = ids.incrementAndGet();
+        reports.put(id,
+                new Report(id, "Report6", 2));
     }
 
     public List<Report> findAll() {
@@ -35,8 +42,9 @@ public class ReportMem {
     }
 
     public void create(Report report) {
-        report.setId(ids);
-        reports.put(ids++, report);
+        int id = ids.incrementAndGet();
+        report.setId(id);
+        reports.put(id, report);
     }
 
     public void update(Report report) {

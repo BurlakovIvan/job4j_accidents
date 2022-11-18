@@ -8,26 +8,33 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 @ThreadSafe
 public class AccidentMem {
     private final Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
-    private int ids = 1;
+    private final AtomicInteger ids = new AtomicInteger(0);
 
-    {
-        accidents.put(ids,
-                new Accident(ids++, "Accident1", "Description1", "Address1"));
-        accidents.put(ids,
-                new Accident(ids++, "Accident2", "Description2", "Address2"));
-        accidents.put(ids,
-                new Accident(ids++, "Accident3", "Description3", "Address3"));
-        accidents.put(ids,
-                new Accident(ids++, "Accident4", "Description4", "Address4"));
-        accidents.put(ids,
-                new Accident(ids++, "Accident5", "Description5", "Address5"));
-        accidents.put(ids,
-                new Accident(ids++, "Accident6", "Description6", "Address6"));
+    public AccidentMem() {
+        int id = ids.incrementAndGet();
+        accidents.put(id,
+                new Accident(id, "Accident1", "Description1", "Address1"));
+        id = ids.incrementAndGet();
+        accidents.put(id,
+                new Accident(id, "Accident2", "Description2", "Address2"));
+        id = ids.incrementAndGet();
+        accidents.put(id,
+                new Accident(id, "Accident3", "Description3", "Address3"));
+        id = ids.incrementAndGet();
+        accidents.put(id,
+                new Accident(id, "Accident4", "Description4", "Address4"));
+        id = ids.incrementAndGet();
+        accidents.put(id,
+                new Accident(id, "Accident5", "Description5", "Address5"));
+        id = ids.incrementAndGet();
+        accidents.put(id,
+                new Accident(id, "Accident6", "Description6", "Address6"));
     }
 
     public List<Accident> findAll() {
@@ -35,8 +42,9 @@ public class AccidentMem {
     }
 
     public void create(Accident accident) {
-        accident.setId(ids);
-        accidents.put(ids++, accident);
+        int id = ids.incrementAndGet();
+        accident.setId(id);
+        accidents.put(id, accident);
     }
 
     public void update(Accident accident) {
