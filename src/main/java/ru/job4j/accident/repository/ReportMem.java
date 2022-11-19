@@ -48,7 +48,7 @@ public class ReportMem {
     }
 
     public void update(Report report) {
-        reports.put(report.getId(), report);
+        reports.replace(report.getId(), report);
     }
 
     public Optional<Report> findById(int reportId) {

@@ -82,7 +82,7 @@ public class AccidentMem {
 
     public void update(Accident accident) {
         accident.setType(types.get(accident.getType().getId() - 1));
-        accidents.put(accident.getId(), accident);
+        accidents.replace(accident.getId(), accident);
     }
 
     public Optional<Accident> findById(int accidentId) {
