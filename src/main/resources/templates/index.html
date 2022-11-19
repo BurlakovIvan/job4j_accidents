@@ -44,6 +44,7 @@
             <th scope="col" class="text-center">Тип</th>
             <th scope="col" class="text-center">Описание</th>
             <th scope="col" class="text-center">Адрес</th>
+            <th scope="col" class="text-center">Статьи</th>
         </tr>
         </thead>
         <tbody>
@@ -57,6 +58,7 @@
                <td th:text="${accident.type.name}" class="text-center"/>
                <td th:text="${accident.text}" class="text-center"/>
                <td th:text="${accident.address}" class="text-center"/>
+              <td th:text="${#strings.listJoin(accident.rules,', ')}"  class="text-center"/>
             </td>
         </tr>
         </tbody>

@@ -53,6 +53,12 @@
                         <label for="address">Адрес</label>
                         <input type="text" class="form-control" name="address" id="address" th:field="*{address}">
                     </div>
+                    <div class="form-group">
+                        <label for="ruleId">Статья</label>
+                        <select class="form-control" id="ruleId" name="ruleId" multiple="multiple">
+                            <option th:each="rule : ${rules}" th:value="${rule.id}" th:text="${rule.name}" th:selected="${accident.rules.contains(rule)}"></option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>
             </div>
