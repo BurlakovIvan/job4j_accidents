@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
+import ru.job4j.accident.repository.AccidentJdbcTemplate;
 import ru.job4j.accident.repository.AccidentMem;
 
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class AccidentService {
 
-    private final AccidentMem store;
+    private final AccidentJdbcTemplate store;
 
     public List<Accident> findAll() {
         return store.findAll();
@@ -44,5 +45,9 @@ public class AccidentService {
     }
     public Optional<Accident> findById(int accidentId) {
         return store.findById(accidentId);
+    }
+
+    public Optional<AccidentType> findByAccidentTypeId(int id) {
+        return store.findByAccidentTypeId(id);
     }
 }

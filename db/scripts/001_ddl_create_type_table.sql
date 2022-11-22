@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS typeAccidents(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR
+);

@@ -24,8 +24,10 @@ public class AccidentController {
 
     @PostMapping("/saveAccident")
     public String save(@ModelAttribute Accident accident,
+                       @RequestParam("typeId") int typeId,
                        @RequestParam(name = "ruleId", required = false)
                        List<Integer> ruleId) {
+        accident.setType(accidentService.findByAccidentTypeId(typeId).get());
         accident.setRules(accidentService.findRule(ruleId));
         accidentService.create(accident);
         return "redirect:/index";
@@ -46,8 +48,10 @@ public class AccidentController {
 
     @PostMapping("/updateAccident")
     public String updateAccident(@ModelAttribute Accident accident,
+                                 @RequestParam("typeId") int typeId,
                                  @RequestParam(name = "ruleId", required = false)
                                  List<Integer> ruleId) {
+        accident.setType(accidentService.findByAccidentTypeId(typeId).get());
         accident.setRules(accidentService.findRule(ruleId));
         accidentService.update(accident);
         return "redirect:/index";
