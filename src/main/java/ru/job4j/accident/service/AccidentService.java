@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentJdbcTemplate;
-import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.repository.AccidentHibernate;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class AccidentService {
 
-    private final AccidentJdbcTemplate store;
+    private final AccidentHibernate store;
 
     public List<Accident> findAll() {
         return store.findAll();
