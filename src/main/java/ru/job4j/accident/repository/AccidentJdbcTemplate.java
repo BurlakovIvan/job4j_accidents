@@ -34,7 +34,7 @@ public class AccidentJdbcTemplate {
                                  SELECT a.id as id, a.name as name, a.text as text, a.address as address,
                                  t.id as type_id, t.name as type_name
                                  FROM accidents a
-                                 LEFT JOIN typeAccidents t
+                                 INNER JOIN typeAccidents t
                                  ON a.type_id = t.id
                                  ORDER BY a.id
                                  """;
@@ -42,7 +42,7 @@ public class AccidentJdbcTemplate {
     private final static String FIND_ACCIDENT = """
                                   SELECT a.id as id, a.name as name, a.text as text, a.address as address,
                                   t.id as type_id, t.name as type_name
-                                  FROM accidents a LEFT JOIN typeAccidents t
+                                  FROM accidents a INNER JOIN typeAccidents t
                                   ON a.type_id = t.id WHERE a.id = ?
                                   ORDER BY a.id
                                   """;
