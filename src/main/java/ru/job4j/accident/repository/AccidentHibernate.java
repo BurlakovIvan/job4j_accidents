@@ -1,6 +1,8 @@
 package ru.job4j.accident.repository;
 
 import lombok.AllArgsConstructor;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
@@ -11,6 +13,8 @@ import java.util.*;
 @Repository
 @AllArgsConstructor
 public class AccidentHibernate {
+
+    private static final Logger LOG = LogManager.getLogger(AccidentHibernate.class.getName());
 
     private final CrudRepository crudRepository;
 
@@ -31,54 +35,52 @@ public class AccidentHibernate {
             = String.format("%s WHERE a.id = :fId ORDER BY a.id", ALL_ACCIDENT);
 
     public Accident create(Accident accident) {
-        Accident rsl = accident;
         try {
             crudRepository.run(session -> session.save(accident));
         } catch (Exception e) {
-            rsl = null;
+            LOG.error("Exception ", e);
         }
-        return rsl;
+        return accident;
     }
 
     public List<Accident> findAll() {
-        List<Accident> rsl;
+        List<Accident> rsl = new ArrayList<>();
         try {
             rsl = crudRepository.query(FIND_ALL_ACCIDENT, Accident.class);
         } catch (Exception e) {
-            rsl = new ArrayList<>();
+            LOG.error("Exception ", e);
         }
         return rsl;
     }
 
     public List<Rule> findAllRule() {
-        List<Rule> rsl;
+        List<Rule> rsl = new ArrayList<>();
         try {
             rsl = crudRepository.query(SELECT_RULES, Rule.class);
         } catch (Exception e) {
-            rsl = new ArrayList<>();
+            LOG.error("Exception ", e);
         }
         return rsl;
     }
 
     public List<AccidentType> findAllAccidentType() {
-        List<AccidentType> rsl;
+        List<AccidentType> rsl = new ArrayList<>();
         try {
             rsl = crudRepository.query(SELECT_ACCIDENT_TYPE, AccidentType.class);
         } catch (Exception e) {
-            rsl = new ArrayList<>();
+            LOG.error("Exception ", e);
         }
         return rsl;
     }
 
     public Set<Rule> findRule(List<Integer> rulesList) {
-        Set<Rule> rsl;
+        Set<Rule> rsl = new HashSet<>();
         try {
             rsl = Set.copyOf(crudRepository
                     .query(String.format("%s WHERE id IN (:fId)", SELECT_RULES),
                             Rule.class, Map.of("fId", rulesList)));
         } catch (Exception e) {
-            rsl = new HashSet<>();
-            e.printStackTrace();
+            LOG.error("Exception ", e);
         }
         return rsl;
     }
@@ -88,7 +90,7 @@ public class AccidentHibernate {
         try {
             crudRepository.run(session -> session.update(accident));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Exception ", e);
         }
     }
 
@@ -97,7 +99,7 @@ public class AccidentHibernate {
         try {
             rsl = crudRepository.optional(FIND_ACCIDENT, Accident.class, Map.of("fId", id));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Exception ", e);
         }
         return rsl;
     }
@@ -109,7 +111,7 @@ public class AccidentHibernate {
                     .optional(String.format("%s WHERE a.id = :fId", SELECT_ACCIDENT_TYPE),
                             AccidentType.class, Map.of("fId", id));
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("Exception ", e);
         }
         return rsl;
     }
