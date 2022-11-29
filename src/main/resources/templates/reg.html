@@ -14,27 +14,28 @@
     <title>Автомобильные инциденты</title>
 </head>
 <body>
-<div class="container py-3">
-    <main class="form-signin">
-        <h1 class="h3 mb-3 fw-normal">Авторизация</h1>
-        <div th:if="${not #lists.isEmpty(errorMessage)}" class="alert alert-danger" role="alert">
-            <span th:text="${errorMessage}"></span>
+<div class="container">
+    <div class="row pt-3">
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                Регистрация
+            </div>
+            <div class="card-body">
+                <form th:action="@{/reg}" method="POST">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="username" name="username" required>
+                        <label for="username">User name</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        <label for="password">Password</label>
+                    </div>
+                    <hr class="my-4">
+                    <button type="submit" class="w-100 btn btn-lg btn-primary">Регистрация</button>
+                </form>
+            </div>
         </div>
-        <form th:action="@{/login}" method="post">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="username" name="username">
-                <label for="username">User name</label>
-            </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="password" name="password">
-                <label for="password">Password</label>
-            </div>
-            <hr class="my-4">
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Авторизация</button>
-        </form>
-        <a class="nav-item nav-link" th:href="@{/reg}" style="margin-right: 100px">На страницу регистрации</a>
-    </main>
+    </div>
 </div>
 </body>
 </html>
