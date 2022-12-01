@@ -20,6 +20,9 @@ class ReportControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private ReportController controller;
+
     @Test
     @WithMockUser
     public void testReports() throws Exception {

@@ -20,6 +20,9 @@ class AccidentControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private AccidentController controller;
+
     @Test
     @WithMockUser
     public void testCreateAccident() throws Exception {

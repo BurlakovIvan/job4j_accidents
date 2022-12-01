@@ -21,6 +21,9 @@ class LoginControlTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private LoginControl controller;
+
     @Test
     @WithMockUser
     public void testLoginPageWithError() throws Exception {

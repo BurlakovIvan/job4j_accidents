@@ -20,6 +20,9 @@ class RegControlTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private RegControl controller;
+
     @Test
     @WithMockUser
     public void testRegistration() throws Exception {

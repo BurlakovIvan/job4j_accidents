@@ -21,6 +21,9 @@ class IndexControlTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @Autowired
+    private IndexControl controller;
+
     @Test
     @WithMockUser
     public void testIndexPage() throws Exception {
