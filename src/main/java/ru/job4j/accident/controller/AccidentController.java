@@ -36,7 +36,7 @@ public class AccidentController {
     @GetMapping("/formUpdateAccident")
     public String update(Model model, @RequestParam("id") int id) {
         Optional<Accident> accident = accidentService.findById(id);
-        String redirect = "index";
+        String redirect = "redirect:/index";
         if (accident.isPresent()) {
             model.addAttribute("accident", accident.get());
             model.addAttribute("types", accidentService.findAllAccidentType());
